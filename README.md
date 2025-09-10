@@ -3,7 +3,7 @@
 A structured journey through core Machine Learning concepts, from foundational theory to practical application, culminating in an end-to-end project.
 
 ## 📂 Repository Structure
-.
+
 ├── 01-Lesson 01/ # Introduction to ML & Linear Regression
 ├── 02-Lesson 02/ # Advanced Linear Models & Regularization
 ├── 03-Lesson 03/ # Data Preprocessing
