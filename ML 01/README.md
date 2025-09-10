@@ -1,6 +1,9 @@
 # Introduction to Machine Learning
 
-This document summarizes key concepts from an introductory course on Machine Learning (ML).
+This lesson provides a brief introduction to Machine Learning.
+
+---
+
 
 ## Table of Contents
 1.  [What is Artificial Intelligence?](#what-is-artificial-intelligence)
