@@ -12,6 +12,7 @@ This document summarizes key concepts from an introductory course on Machine Lea
 7.  [Types of Machine Learning](#types-of-machine-learning)
 8.  [Linear Regression](#linear-regression)
 9.  [Gradient Descent](#gradient-descent)
+10. [Normal Equation](#normal-equation)
 
 ---
 
@@ -131,11 +132,39 @@ The algorithm follows these steps:
 *   **Too Small η:** The algorithm will be slow to converge.
 *   **Too Large η:** The algorithm may overshoot the minimum and fail to converge.
 
-### Normal Equation (Closed-Form Solution)
-*   The **Normal Equation** is an analytical method to directly calculate the optimal weights without iteration.
-*   It involves solving the equation where the partial derivatives of the cost function are set to zero:
+## Normal Equation
+
+The **[Normal Equation](https://en.wikipedia.org/wiki/Ordinary_least_squares)** provides an analytical, closed-form solution for finding the optimal weights in Linear Regression, as an alternative to the iterative [Gradient Descent](#gradient-descent) approach.
+
+### How It Works
+*   The method involves directly solving for the weights by setting the partial derivatives of the cost function `J` to zero. This finds the point where the gradient is zero, indicating a minimum of the cost function.
     ```
     ∂J/∂w₀ = 0
     ∂J/∂w₁ = 0
     ```
-*   This provides a **closed-form solution** for the weights `w₀` and `w₁`.
+*   Solving this system of equations yields the exact values of the weights `w₀` and `w₁` that minimize the Mean Squared Error (MSE).
+
+### The Closed-Form Solution
+*   For a simple linear regression model `y = w₀ + w₁x`, the solution can be derived as:
+    ```
+    w₁ = Σ[(x⁽ⁱ⁾ - x̄)(y⁽ⁱ⁾ - ȳ)] / Σ(x⁽ⁱ⁾ - x̄)²
+    w₀ = ȳ - w₁x̄
+    ```
+    where `x̄` and `ȳ` are the mean values of the feature and target variable, respectively.
+*   In its general vectorized form for multiple features, the solution is expressed as:
+    ```
+    W = (XᵀX)⁻¹Xᵀy
+    ```
+    where:
+    *   `W` is the vector of weights (including `w₀`).
+    *   `X` is the matrix of input features (with an added column of 1s for the bias term).
+    *   `y` is the vector of target values.
+
+### Gradient Descent vs. Normal Equation
+| Factor | Gradient Descent | Normal Equation |
+| :--- | :--- | :--- |
+| **Learning Rate** | Requires choosing `η` | Not needed |
+| **Iterations** | Required | No iterations needed |
+| **Complexity** | O(kn²) | O(n³) for inverting (XᵀX) |
+| **Dataset Size** | Works well with large `n` (number of examples) | Slow if very large `n` |
+| **Features** | Handles large `n` well | Slow if very large `n` (number of features) |
