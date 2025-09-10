@@ -4,12 +4,14 @@ A structured journey through core Machine Learning concepts, from foundational t
 
 ## 📂 Repository Structure
 
-├── 01-Lesson 01/ # Introduction to ML & Linear Regression
-├── 02-Lesson 02/ # Advanced Linear Models & Regularization
-├── 03-Lesson 03/ # Data Preprocessing
-├── 04-Lesson 04/ # Model Evaluation & Hyperparameter Tuning
-├── 05-Project 1/ # Used Cars Price Prediction Project
-└── README.md # This file
+```text
+.
+├── 01-Lesson-01/    # Introduction to ML & Linear Regression
+├── 02-Lesson-02/    # Advanced Linear Models & Regularization
+├── 03-Lesson-03/    # Data Preprocessing
+├── 04-Lesson-04/    # Model Evaluation & Hyperparameter Tuning
+├── 05-Project-01/   # Used Cars Price Prediction Project
+└── README.md        # This file
 
 
 ## 🧠 Curriculum Overview
