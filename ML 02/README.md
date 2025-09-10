@@ -107,7 +107,7 @@ The general form of the regularized cost function is:
 
 | Aspect | L2 Regularization (Ridge) | L1 Regularization (Lasso) |
 | :--- | :--- | :--- |
-| **Penalty Term** | `α * Σ |w|₂²` | `α * Σ |w|₁` |
+| **Penalty Term** | `α * Σ \|w\|₂²` | `α * Σ \|w\|₁` |
 | **Effect on Weights** | Shrinks weights proportionally. **Weights never become zero.** | Can force weights to be **exactly zero**. |
 | **Feature Selection** | No | Yes (automatic) |
 | **Use Case** | When all features are likely to be important. | When you suspect many features are irrelevant and want feature selection. |
