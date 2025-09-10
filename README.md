@@ -12,7 +12,7 @@ A structured journey through core Machine Learning concepts, from foundational t
 ├── 04-Lesson-04/    # Model Evaluation & Hyperparameter Tuning
 ├── 05-Project-01/   # Used Cars Price Prediction Project
 └── README.md        # This file
-
+```
 
 ## 🧠 Curriculum Overview
 
