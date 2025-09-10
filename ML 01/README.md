@@ -83,70 +83,59 @@ ML is a subset of AI focused on the idea that systems can **learn from data** an
 3.  **Reinforcement Learning:** Learning through **trial and error**.
     *   An **agent** takes **actions** in an **environment** to maximize a **reward**.
 
-# Introduction to Machine Learning
-
 ## Linear Regression
 
 ### Simple Linear Regression
 *   Models the relationship between **one feature (x)** and a **continuous target variable (y)**.
 *   The model is represented by a linear equation:
-    \[ y = w_0 + w_1 x \]
+    ```
+    y = w₀ + w₁x
+    ```
     *   `y`: Target / Output variable
     *   `x`: Feature / Input variable
-    *   `w_0`: Y-intercept (Bias term)
-    *   `w_1`: Slope (Weight for feature `x`)
+    *   `w₀`: Y-intercept (Bias term)
+    *   `w₁`: Slope (Weight for feature `x`)
 *   The goal is to find the **Best Fit Line** that minimizes the error between the predicted and actual values.
-*   This is achieved by finding the **Best Weights** (`w_0`, `w_1`).
-
-### Key Concepts for Linear Regression
-*   **Linear Target:** The variable you are trying to predict (e.g., house price).
-*   **Best Fit Line:** The line that results in the smallest total prediction error.
-*   **Objective:** Minimize the total error (cost) across all data points.
+*   This is achieved by finding the **Best Weights** (`w₀`, `w₁`).
 
 ### Cost Function: Mean Squared Error (MSE)
 *   The cost function `J` measures the performance of the model. For Linear Regression, Mean Squared Error is commonly used.
 *   It is the average of the squared differences between the actual (`y_actual`) and predicted (`y_pred`) values.
-    \[ J = \frac{1}{m} \sum_{i=1}^m \left( y_{actual}^{(i)} - y_{pred}^{(i)} \right)^2 \Rightarrow MSE \]
+    ```
+    J(w) = (1/m) * Σ (y_actual⁽ⁱ⁾ - y_pred⁽ⁱ⁾)²
+    ```
 *   The objective of the learning algorithm is to **minimize** this cost function `J`.
-*   A lower MSE means a better fit for the model (e.g., `J = 20` is better than `J = 50`).
 
 ## Gradient Descent
 
 ### Overview
 *   Gradient Descent is an iterative optimization algorithm used to find the **optimal weights** that **minimize the cost function**.
-*   It is a fundamental algorithm for training many machine learning models, including Linear Regression.
 
 ### The Gradient Descent Process
 The algorithm follows these steps:
 
-1.  **Random Initialization:** Start with random values for the weights (e.g., `w_0 = 0`, `w_1 = 0`).
-2.  **Compute Gradient:** Calculate the partial derivative of the cost function `J` with respect to each weight. This gradient points in the direction of the steepest ascent.
-    \[ \frac{\partial J}{\partial w_0}, \frac{\partial J}{\partial w_1} \]
-3.  **Update Weights:** Adjust the weights by moving them a small step in the *opposite* direction of the gradient (towards the minimum).
+1.  **Random Initialization:** Start with random values for the weights (e.g., `w₀ = 0`, `w₁ = 0`).
+2.  **Compute Gradient:** Calculate the partial derivative of the cost function `J` with respect to each weight.
+    ```
+    ∂J/∂w₀, ∂J/∂w₁
+    ```
+3.  **Update Weights:** Adjust the weights by moving them a small step in the *opposite* direction of the gradient.
     *   The update rule for each weight is:
-        \[ w^{new} = w^{old} - \eta \frac{\partial J}{\partial w} \]
+    ```
+    w_new = w_old - η * (∂J/∂w)
+    ```
     *   `η` (eta) is the **Learning Rate**, a crucial hyperparameter that controls the size of the step.
-4.  **Iterate:** Repeat steps 2 and 3 until the gradients approach zero (`∂J/∂w ≈ 0`), indicating that the algorithm has (likely) found the minimum of the cost function.
+4.  **Iterate:** Repeat steps 2 and 3 until the gradients approach zero (`∂J/∂w ≈ 0`).
 
 ### The Role of the Learning Rate (η)
-*   The learning rate controls how big the steps are during each update.
-*   A good learning rate is essential for convergence:
-    *   **Too Small:** The algorithm will be slow to converge.
-    *   **Too Large:** The algorithm may overshoot the minimum and fail to converge or even diverge.
-
-### Vectorized Form
-*   Weights and features can be represented as vectors for a more general form:
-    *   Weight vector: `[W] = [w_0, w_1]`
-    *   Feature vector (with added bias term): `[X] = [1, x]`
-*   The prediction can be written as the dot product: `y_pred = W^T · X`
-*   The cost function and gradient descent update can be expressed using these vectors.
+*   **Too Small η:** The algorithm will be slow to converge.
+*   **Too Large η:** The algorithm may overshoot the minimum and fail to converge.
 
 ### Normal Equation (Closed-Form Solution)
-*   The **Normal Equation** (or **Ordinary Least Squares (OLS)** solution) is an analytical method to directly calculate the optimal weights without the need for iteration.
+*   The **Normal Equation** is an analytical method to directly calculate the optimal weights without iteration.
 *   It involves solving the equation where the partial derivatives of the cost function are set to zero:
-    \[ \begin{aligned}
-    &\frac{\partial J}{\partial w_0} = 0 \\
-    &\frac{\partial J}{\partial w_1} = 0
-    \end{aligned} \]
-*   This provides a **closed solution** for the weights `w_0` and `w_1`.
-*   **Comparison:** While Gradient Descent is an iterative algorithm, the Normal Equation solves for the weights directly. It is efficient for small datasets but can be computationally expensive for large ones.
+    ```
+    ∂J/∂w₀ = 0
+    ∂J/∂w₁ = 0
+    ```
+*   This provides a **closed-form solution** for the weights `w₀` and `w₁`.
