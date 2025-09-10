@@ -1,6 +1,6 @@
 # Machine Learning: Linear Models & Regularization
 
-This lesson summarizes advanced concepts in Linear Regression, including multiple and polynomial regression, the bias-variance tradeoff, and regularization techniques.
+This document summarizes advanced concepts in Linear Regression, including multiple and polynomial regression, the bias-variance tradeoff, and regularization techniques.
 
 ## Table of Contents
 1.  [Linear Regression Types](#linear-regression-types)
@@ -37,8 +37,7 @@ This lesson summarizes advanced concepts in Linear Regression, including multipl
 ### LinearRegression (Normal Equation)
 *   **Class:** `sklearn.linear_model.LinearRegression`
 *   **Method:** Uses the Ordinary Least Squares (OLS) method to minimize the residual sum of squares.
-*   **Solution:** Computes weights directly using the formula:
-    \[ W = (X^T X)^{-1} X^T y \]
+*   **Solution:** Computes weights directly using the matrix formula: `W = (X.T * X)^-1 * X.T * y`
 
 ### SGDRegressor (Gradient Descent)
 *   **Class:** `sklearn.linear_model.SGDRegressor`
@@ -57,10 +56,10 @@ The type of Gradient Descent is defined by how much data is used to compute the 
 
 *   **Model:** Extends simple linear regression to multiple features (`x₁, x₂, ..., xₙ`).
 *   **Equation:**
-    \[ y = w_0 + w_1x_1 + w_2x_2 + \cdots + w_nx_n \]
+    `y = w₀ + w₁x₁ + w₂x₂ + ... + wₙxₙ`
 *   **Vectorized Form:** This can be written succinctly using a weight vector `W` and feature vector `X` (with `x₀ = 1` for the bias term `w₀`):
-    \[ y = W^T X \]
-    where \( W = [w_0, w_1, ..., w_n] \) and \( X = [1, x_1, x_2, ..., x_n] \)
+    `y = WᵀX`
+    where `W = [w₀, w₁, ..., wₙ]` and `X = [1, x₁, x₂, ..., xₙ]`
 
 ## Polynomial Regression
 
@@ -68,7 +67,7 @@ The type of Gradient Descent is defined by how much data is used to compute the 
 *   **Implementation:** Use `sklearn.preprocessing.PolynomialFeatures`
     *   **Example:** For a 2D input `[a, b]` and `degree=2`, it creates the new feature vector `[1, a, b, a², ab, b²]`.
 *   **Model:** A linear regression model is then fit on these new polynomial features.
-    *   The model equation becomes non-linear in the original inputs (e.g., \( y = w_0 + w_1x_1 + w_2x_2 + w_3x_1^2 + w_4x_1x_2 + w_5x_2^2 \)).
+    *   The model equation becomes non-linear in the original inputs (e.g., `y = w₀ + w₁x₁ + w₂x₂ + w₃x₁² + w₄x₁x₂ + w₅x₂²`).
 
 ## Bias-Variance Tradeoff
 
@@ -85,30 +84,30 @@ A fundamental concept in ML that describes the tension between a model's simplic
 Regularization techniques prevent overfitting by adding a penalty term to the model's cost function, discouraging overly complex models with large weights.
 
 The general form of the regularized cost function is:
-\[ J(w) = MSE + \text{Penalty Term} \]
+`J(w) = MSE + Penalty Term`
 
 ### Types of Regularization:
 
 1.  **Ridge Regression (L2 Regularization)**
-    *   **Penalty Term:** \( \alpha \sum_{i=1}^{n} w_i^2 \) (Sum of squared weights)
+    *   **Penalty Term:** `α * Σ(w_i²)` (Sum of squared weights)
     *   **Effect:** Shrinks weights towards zero but never exactly to zero. Good for handling correlated features.
     *   **Scikit-Learn:** `sklearn.linear_model.Ridge`
 
 2.  **Lasso Regression (L1 Regularization)**
-    *   **Penalty Term:** \( \alpha \sum_{i=1}^{n} |w_i| \) (Sum of absolute weights)
+    *   **Penalty Term:** `α * Σ|w_i|` (Sum of absolute weights)
     *   **Effect:** Can shrink less important feature weights exactly to zero. Performs **automatic feature selection**.
     *   **Scikit-Learn:** `sklearn.linear_model.Lasso`
 
 3.  **Elastic Net**
     *   **Penalty Term:** A mix of L1 and L2 penalties. Combines the properties of both Ridge and Lasso.
-    *   **Formula:** \( \alpha \rho \sum_{i=1}^{n} |w_i| + \frac{\alpha (1-\rho)}{2} \sum_{i=1}^{n} w_i^2 \)
+    *   **Formula:** `α * ρ * Σ|w_i| + [α * (1-ρ)/2] * Σ(w_i²)`
     *   **Scikit-Learn:** `sklearn.linear_model.ElasticNet`
 
 ## L1 vs. L2 Penalty
 
 | Aspect | L2 Regularization (Ridge) | L1 Regularization (Lasso) |
 | :--- | :--- | :--- |
-| **Penalty Term** | \( \alpha \sum \|w\|^2_2 \) | \( \alpha \sum \|w\|_1 \) |
+| **Penalty Term** | `α * Σ |w|₂²` | `α * Σ |w|₁` |
 | **Effect on Weights** | Shrinks weights proportionally. **Weights never become zero.** | Can force weights to be **exactly zero**. |
 | **Feature Selection** | No | Yes (automatic) |
 | **Use Case** | When all features are likely to be important. | When you suspect many features are irrelevant and want feature selection. |
