@@ -134,7 +134,7 @@ The algorithm follows these steps:
 
 ## Normal Equation
 
-The **[Normal Equation](https://en.wikipedia.org/wiki/Ordinary_least_squares)** provides an analytical, closed-form solution for finding the optimal weights in Linear Regression, as an alternative to the iterative [Gradient Descent](#gradient-descent) approach.
+The **Normal Equation** provides an analytical, closed-form solution for finding the optimal weights in Linear Regression, as an alternative to the iterative **Gradient Descent** approach.
 
 ### How It Works
 *   The method involves directly solving for the weights by setting the partial derivatives of the cost function `J` to zero. This finds the point where the gradient is zero, indicating a minimum of the cost function.
