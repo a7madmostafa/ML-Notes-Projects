@@ -1,6 +1,6 @@
 # Machine Learning: Data Preprocessing 
  
-This document covers essential data preprocessing techniques, including handling categorical variables, missing values, and feature scaling. These are critical steps before training a machine learning model. 
+This lesson covers essential data preprocessing techniques, including handling categorical variables, missing values, and feature scaling. These are critical steps before training a machine learning model. 
  
 ## Table of Contents 
 1.  [Handling Categorical Data](#handling-categorical-data) 
@@ -41,20 +41,31 @@ Most machine learning algorithms require numerical input. Categorical data (text
         * Handles high-cardinality features efficiently.  
     *   **Library Support:** `category_encoders.BinaryEncoder` (not in core scikit-learn, but widely used).  
  
----
+--- 
  
 ## Handling Missing Values 
  
-Real-world datasets often have missing values. It is crucial to handle them before training a model, as most algorithms cannot process them directly. 
+Real-world datasets often have missing values. It is crucial to handle them before training a model, as most algorithms cannot process them directly.  
  
-Common strategies include:  
-*   **Deletion:** Removing rows or columns with missing values. This is simple but can lead to loss of valuable data.  
-*   **Imputation:** Filling in missing values with a statistic calculated from the available data.  
-    *   **Numerical Features:** Use the **mean** or **median** of the feature.  
-    *   **Categorical Features:** Use the **mode** (most frequent value) of the feature.  
-*   **Scikit-Learn Class:** `sklearn.impute.SimpleImputer`  
+### General Guidelines (based on percentage of missing values):  
+*   **Drop Rows:** If the percentage of missing values in a row is **< 5%**, drop those rows.  
+*   **Drop Column:** If a column has **> 40%** missing values, it usually carries too little information → drop the column.  
+*   **Imputation (5–40% missing):** Fill missing values instead of dropping data.  
  
----
+### Imputation Methods:  
+1. **Simple Imputer** (`sklearn.impute.SimpleImputer`)  
+   * **Strategy Options:**  
+     * `"mean"` → Replace missing values with the mean of the column (for numerical features).  
+     * `"median"` → Replace with the median (robust against outliers).  
+     * `"most_frequent"` → Replace with the mode (common for categorical features).  
+     * `"constant"` → Replace with a fixed value (useful for special tokens like `"Unknown"`).  
+ 
+2. **KNN Imputer** (`sklearn.impute.KNNImputer`)  
+   * Uses similarity between samples (nearest neighbors) to estimate missing values.  
+   * More powerful than simple statistics when relationships between features exist.  
+   * Can be computationally expensive for large datasets.  
+ 
+--- 
  
 ## Feature Scaling 
  
@@ -81,7 +92,7 @@ Many machine learning algorithms perform better or converge faster when features
     *   This is less affected by outliers than Min-Max scaling.  
     *   **Scikit-Learn Class:** `sklearn.preprocessing.StandardScaler`  
  
----
+--- 
  
 ## The Preprocessing Workflow 
  
